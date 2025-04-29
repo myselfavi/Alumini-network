@@ -1,0 +1,40 @@
+const UserModel = require("../models/user.model");
+
+exports.getUser = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const user = await UserModel.findById(userId);
+        if (!user) {
+            return res.status(404).send({message: "User not found"});
+        }
+        res.send(user);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+};
+
+exports.updateUser = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const user = await UserModel.findByIdAndUpdate({ _id: userId }, req.body, {new: true});
+        if (!user) {
+            return res.status(404).send({message: "User not found"});
+        }
+        res.send(user);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+};
+
+exports.deleteUser = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const user = await UserModel.findByIdAndDelete(userId);
+        if (!user) {
+            return res.status(404).send({message: "User not found"});
+        }
+        res.send({message: "User deleted successfully"});
+    } catch (error) {
+        res.status(400).send(error);
+    }
+};

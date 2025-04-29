@@ -1,0 +1,42 @@
+# See https://help.github.com/en/articles/ignoring-files#create-a-gitignore-file
+
+# dependencies
+/node_modules
+/public/lib
+
+# build
+/build
+
+# testing
+/coverage
+
+# production
+/dist
+
+# misc
+.DS_Store
+
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# cache
+npm-cache/
+yarn-cache/
+
+# editor
+*.sublime-project
+*.sublime-workspace
+
+# IDEs
+.idea
+.vscode
+
+# misc
+/.cache
+/.next
+/vercel
+/.vercel
+/netlify
+/.netlify
