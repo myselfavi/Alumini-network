@@ -1,37 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Home, MessageSquare, Bell, Briefcase, Users } from 'lucide-react';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Sidebar = () => {
-    const [activeTab, setActiveTab] = useState('Home');
-
+    const location = useLocation();
     const menuItems = [
-        { name: 'Home', icon: <Home className="w-5 h-5" /> },
-        { name: 'Network', icon: <Users className="w-5 h-5" /> },
-        { name: 'Messages', icon: <MessageSquare className="w-5 h-5" /> },
-        { name: 'Notifications', icon: <Bell className="w-5 h-5" /> },
-        { name: 'Jobs', icon: <Briefcase className="w-5 h-5" /> },
+        { name: 'Home', icon: <Home className="w-5 h-5" />, to: '/dashboard' },
+        { name: 'Network', icon: <Users className="w-5 h-5" />, to: '/dashboard/network' },
+        { name: 'Messages', icon: <MessageSquare className="w-5 h-5" />, to: '/dashboard/messages' },
+        // { name: 'Notifications', icon: <Bell className="w-5 h-5" />, to: '/dashboard/notifications' },
+        // { name: 'Jobs', icon: <Briefcase className="w-5 h-5" />, to: '/dashboard/jobs' },
     ];
 
     return (
-        <div className="w-64 py-5 h-full bg-white border-r border-gray-200">
-            <ul className="space-y-4 p-4">
+        <div className="w-64 py-5 px-3 h-full bg-white border-r border-gray-200">
+            <div className="flex flex-col space-y-2">
                 {menuItems.map((item) => (
-                    <li
+                    <NavLink
                         key={item.name}
-                        className={`flex items-center p-2 text-gray-700 rounded transition-colors cursor-pointer ${
-                            activeTab === item.name
-                                ? 'bg-indigo-100 text-indigo-600'
-                                : 'hover:text-indigo-600 hover:bg-gray-100'
-                        }`}
-                        onClick={() => setActiveTab(item.name)}
+                        to={item.to}
+                        isActive={() => location.pathname.startsWith(item.to)}
+                        className={({ isActive }) =>
+                            `flex items-center p-2 text-gray-700 rounded transition-colors cursor-pointer ${isActive ? 'bg-indigo-100 text-indigo-600' : 'hover:text-indigo-600 hover:bg-gray-100'}`
+                        }
                     >
-                        {item.icon}
-                        <span className="ml-3">{item.name}</span>
-                    </li>
+                        <div className="flex items-center space-x-2">
+                            {item.icon}
+                            <span className="ml-3">{item.name}</span>
+                        </div>
+                    </NavLink>
                 ))}
-            </ul>
+            </div>
+            
         </div>
     );
 };
 
 export default Sidebar;
+

@@ -7,5 +7,6 @@ const router = Router();
 router.get("/", authorizeUser, userController.getUser);
 router.put("/", authorizeUser, userController.updateUser);
 router.delete("/", authorizeUser, userController.deleteUser);
+router.get("/all", authorizeUser, userController.getAllUsers);
 
 module.exports = router;

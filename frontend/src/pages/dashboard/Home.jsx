@@ -7,7 +7,6 @@ import { Loader } from "lucide-react";
 import { useAuthContext } from "../../contexts/useAuthContext";
 
 function Home() {
-
     const { user } = useAuthContext();
     const api = useApi();
 
@@ -33,32 +32,48 @@ function Home() {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center items-center h-full">
+            <div className="flex flex-col items-center justify-center h-full space-y-4">
                 <Loader className="animate-spin" size={32} /> {/* Lucide loader icon */}
+                <span className="text-gray-500">Loading...</span>
             </div>
         );
     }
 
     if (error) {
         return (
-            <div className="flex justify-center items-center h-full text-red-500">
+            <div className="flex flex-col items-center justify-center h-full space-y-4 text-red-500">
                 Error: {error.message}
             </div>
         );
     }
 
     return (
-        <section className="flex flex-col items-center size-full">
+        <section className="flex flex-col items-center size-full space-y-6">
             <SearchBar />
-            { user.type === 'alumni' && <CreatePost onPostCreated={(post) => setPosts([post, ...posts])} /> }
-            <div className="space-y-6 w-full">
+            {user.type === "alumni" && (
+                <CreatePost
+                    onPostCreated={(post) => setPosts([post, ...posts])}
+                    className="mb-6"
+                />
+            )}
+            <div className="flex flex-col space-y-6 w-full">
                 {posts.length > 0 ? (
-                    posts.map((post) => <Post key={post._id} post={post} onDelete={() => {
-                        console.log("delete " + post._id)
-                        setPosts(prev => prev.filter(p => p._id != post._id))
-                    }} />)
+                    posts.map((post) => (
+                        <Post
+                            key={post._id}
+                            post={post}
+                            onDelete={() => {
+                                console.log("delete " + post._id);
+                                setPosts((prev) =>
+                                    prev.filter((p) => p._id !== post._id)
+                                );
+                            }}
+                        />
+                    ))
                 ) : (
-                    <div className="text-gray-500">No posts available</div>
+                    <div className="text-gray-500">
+                        No posts available
+                    </div>
                 )}
             </div>
         </section>
@@ -66,3 +81,5 @@ function Home() {
 }
 
 export default Home;
+
+

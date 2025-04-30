@@ -12,6 +12,19 @@ exports.getUser = async (req, res) => {
         res.status(400).send(error);
     }
 };
+exports.getAllUsers = async (req, res) => {
+    try {
+        const { type } = req.query;
+        if (!type) {
+            return res.status(400).send({message: "Type query parameter is required"});
+        }
+
+        const users = await UserModel.find({ type });
+        res.json({ status: "success", message: "Users found", data: users });
+    } catch (error) {
+        res.status(400).send(error);
+    }
+};
 
 exports.updateUser = async (req, res) => {
     try {
