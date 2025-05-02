@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import Home from './pages/dashboard/Home.jsx';
 import Network from './pages/dashboard/Network.jsx';
+import Message from './pages/dashboard/Message.jsx';
 import {AuthProvider, useAuthContext} from './contexts/useAuthContext.jsx';
 
 const ProtectedRoute = ({children}) => {
@@ -75,6 +76,10 @@ const router = createBrowserRouter(
                 <Route
                     path="network"
                     element={<Network/>}
+                />
+                <Route
+                    path="messages"
+                    element={<Message/>}
                 />
                 <Route index element={<Home/>} />
             </Route>
