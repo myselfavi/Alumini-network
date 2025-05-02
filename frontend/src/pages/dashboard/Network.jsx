@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Circle, Briefcase, Building2, Phone, Mail, X, Calendar, MapPin } from 'lucide-react';
+import { Briefcase, Building2, Phone, Mail, X } from 'lucide-react';
 import useApi from '../../hooks/useApi';
 
 function AlumniNetworkCard({ alumni, onClick }) {
@@ -10,10 +10,8 @@ function AlumniNetworkCard({ alumni, onClick }) {
       onClick={() => onClick(alumni)}
     >
       <div className="flex items-center p-4">
-        <div className="w-24 h-24 mr-4 rounded-full bg-gray-200 p-4 flex items-center justify-center">
-          <Circle className="w-full h-full text-gray-600">
-            <span className="text-3xl">{nameInitials}</span>
-          </Circle>
+        <div className="flex items-center justify-center w-24 h-24 mr-4 bg-gray-200 rounded-full">
+          <span className="text-3xl text-gray-600">{nameInitials}</span>
         </div>
         <div className="flex flex-col">
           <h2 className="text-2xl">{alumni.name}</h2>
@@ -40,7 +38,7 @@ function AlumniNetwork() {
   useEffect(() => {
     const fetchAlumni = async () => {
       try {
-        const response = await api.get('/api/users/all?type=alumni');
+        const response = await api.get('/api/user/all?type=alumni');
         setAlumniList(response.data);
       } catch (err) {
         setError(err);
@@ -73,22 +71,14 @@ function AlumniNetwork() {
           <button onClick={() => setSelectedAlumni(null)} className="absolute top-0 right-0 p-4">
             <X className="w-6 h-6" />
           </button>
-          <h2 className="text-2xl">{selectedAlumni?.name}</h2>
+          <h2 className="text-2xl">Contact Us</h2>
           <p className="text-base flex items-center">
             <Phone className="w-6 h-6 mr-2" />
-            <span className="mr-2">{selectedAlumni?.phone}</span>
+            <a href={`tel:${selectedAlumni?.phone}`} className="text-blue-600 underline mr-2">{selectedAlumni?.phone}</a>
           </p>
           <p className="text-base flex items-center">
             <Mail className="w-6 h-6 mr-2" />
-            <span className="mr-2">{selectedAlumni?.email}</span>
-          </p>
-          <p className="text-base flex items-center">
-            <Calendar className="w-6 h-6 mr-2" />
-            <span className="mr-2">Graduated: {selectedAlumni?.graduationYear}</span>
-          </p>
-          <p className="text-base flex items-center">
-            <MapPin className="w-6 h-6 mr-2" />
-            <span className="mr-2">Location: {selectedAlumni?.location}</span>
+            <a href={`mailto:${selectedAlumni?.email}`} className="text-blue-600 underline mr-2">{selectedAlumni?.email}</a>
           </p>
         </div>
       </div>

@@ -8,6 +8,8 @@ const Sidebar = () => {
         { name: 'Home', icon: <Home className="w-5 h-5" />, to: '/dashboard' },
         { name: 'Network', icon: <Users className="w-5 h-5" />, to: '/dashboard/network' },
         { name: 'Messages', icon: <MessageSquare className="w-5 h-5" />, to: '/dashboard/messages' },
+        { name: 'Help', icon: <Bell className="w-5 h-5" />, to: '/dashboard/help' },
+
         // { name: 'Notifications', icon: <Bell className="w-5 h-5" />, to: '/dashboard/notifications' },
         // { name: 'Jobs', icon: <Briefcase className="w-5 h-5" />, to: '/dashboard/jobs' },
     ];

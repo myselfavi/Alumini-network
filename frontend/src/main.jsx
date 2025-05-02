@@ -12,6 +12,8 @@ import Home from './pages/dashboard/Home.jsx';
 import Network from './pages/dashboard/Network.jsx';
 import Message from './pages/dashboard/Message.jsx';
 import {AuthProvider, useAuthContext} from './contexts/useAuthContext.jsx';
+import Profile from './pages/dashboard/Profile.jsx';
+import Help from './pages/dashboard/Help.jsx';
 
 const ProtectedRoute = ({children}) => {
     const {user, loading} = useAuthContext();
@@ -81,9 +83,17 @@ const router = createBrowserRouter(
                     path="messages"
                     element={<Message/>}
                 />
+                <Route 
+                path="Help"
+                element={<Help/>}
+                />
                 <Route index element={<Home/>} />
             </Route>
-        </Route>
+                <Route
+                    path="profile"
+                    element={<Profile/>} 
+                />
+            </Route>
     )
 );
 
