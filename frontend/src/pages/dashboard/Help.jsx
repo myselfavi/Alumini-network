@@ -12,8 +12,6 @@ function Help() {
                     <ul className="list-disc list-inside text-gray-600 space-y-2">
                         <li>Email: <a href="mailto:support@alumni-network.com" className="text-indigo-600 hover:underline">support@alumni-network.com</a></li>
                         <li>Phone: <a href="tel:+1234567890" className="text-indigo-600 hover:underline">+1 (234) 567-890</a></li>
-                        <li>Office Hours: Monday to Friday, 9:00 AM - 5:00 PM</li>
-                        <li>Address: 123 Alumni Network Street, City, Country</li>
                     </ul>
                 </div>
             </div>

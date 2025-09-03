@@ -10,10 +10,9 @@ router.get('/', authorizeUser, postsController.getPosts);
 // Route to get a single post by ID
 router.get('/:id', authorizeUser, postsController.getPostById);
 
-// Route to create a new post
 router.post('/', authorizeUser, postsController.createPost);
 
-// Route to update a post by ID
+// Route to update post for future.
 router.put('/:id', authorizeUser, postsController.updatePost);
 
 // Route to delete a post by ID

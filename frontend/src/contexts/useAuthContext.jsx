@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
                 console.log("checking user...");
                 if (token) {
                     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-                    const res = await api.get("/api/auth/me");
+                    const res = await api.get("/api/user");
                     if (res.data.user) {
                         console.log(res.data.user);
                         setUser(res.data.user);
@@ -95,7 +95,6 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useAuthContext() {
     return useContext(AuthContext);
 }

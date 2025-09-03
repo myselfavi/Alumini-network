@@ -22,7 +22,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// Basic route
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -32,7 +31,7 @@ app.use("/api/auth", require("./routes/auth.routes"));
 app.use("/api/user", require("./routes/user.routes"));
 app.use("/api/post/", require("./routes/post.routes"));
 
-// Connect to the database and start the server
+// database connection 
 {
     console.log("Connecting to the database...");
     mongoose.connect(process.env.MONGO_URL, {

@@ -19,7 +19,6 @@ exports.getMe = async (req, res) => {
     }
 };
 
-
 exports.loginUser = async (req, res) => {
     try {
         const user = await UserModel.findOne({

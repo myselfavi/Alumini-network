@@ -39,7 +39,7 @@ exports.getPostById = async (req, res) => {
     }
 };
 
-// Update a post
+// update and delete for future
 exports.updatePost = async (req, res) => {
     try {
         const { id } = req.params;
